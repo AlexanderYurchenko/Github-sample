@@ -1,0 +1,78 @@
+@import "./common.scss";
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap");
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  font-size: $font-size-basic;
+  font-weight: 400;
+  line-height: $line-height-basic;
+  color: $text-main;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  min-width: 320px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.w-inner {
+  position: relative;
+}
+
+.w-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px 0 0;
+  padding: 15px;
+  height: 100px;
+  background: #f4f6fc;
+  font-size: 22px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.w-center {
+  width: $page-width;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 15px;
+}
+
+.w-footer {
+  margin-top: 40px;
+  padding: 40px 0;
+  border-top: 1px solid #eaecef;
+}
+
+.c-icon {
+  display: block;
+  width: 14px;
+  height: 14px;
+  background-position: left top;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  &--exclamation {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 286.054 286.054'%3E%3Cpath d='M143.027 0C64.04 0 0 64.04 0 143.027c0 78.996 64.04 143.027 143.027 143.027 78.996 0 143.027-64.022 143.027-143.027C286.054 64.04 222.022 0 143.027 0zm0 259.236c-64.183 0-116.21-52.026-116.21-116.21s52.026-116.21 116.21-116.21 116.21 52.026 116.21 116.21-52.026 116.21-116.21 116.21zm.01-196.5c-10.244 0-17.995 5.346-17.995 13.98v79.2c0 8.644 7.75 13.972 17.995 13.972 9.994 0 17.995-5.55 17.995-13.972v-79.2c-.001-8.43-8-13.98-17.995-13.98zm0 124.997c-9.842 0-17.852 8-17.852 17.86 0 9.833 8 17.843 17.852 17.843s17.843-8 17.843-17.843c-.001-9.85-8-17.86-17.843-17.86z' fill='%2328a745'/%3E%3C/svg%3E");
+  }
+
+  &--closed {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='124' height='124' fill='%23cb2431'%3E%3Cpath d='M71,30c0-3.3-2.7-6-6-6h-6c-3.3,0-6,2.7-6,6v41c0,3.3,2.7,6,6,6h6c3.3,0,6-2.7,6-6V30z'/%3E%3Ccircle cx='62' cy='92' r='9'/%3E%3Cpath d='M109.2 53.2c.5 2.8.8 5.8.8 8.8 0 26.5-21.5 48-48 48S14 88.5 14 62s21.5-48 48-48c12.6 0 24 4.9 32.6 12.8l9.9-9.9C93.4 6.4 78.4 0 62 0 27.8 0 0 27.8 0 62s27.8 62 62 62 62-27.8 62-62c0-7.1-1.2-13.9-3.4-20.2l-11.4 11.4zM91.4 37l-2.1-2.1c-2.4-2.4-6.2-2.4-8.5 0-2.4 2.4-2.4 6.2 0 8.5l8.9 8.9c1.1 1.1 2.7 1.8 4.3 1.8s3.1-.6 4.3-1.8l23-23c2.3-2.3 2.5-6.1.3-8.5-2.3-2.5-6.3-2.6-8.7-.1L96.4 37a3.5 3.5 0 0 1-5 0z'/%3E%3C/svg%3E");
+  }
+}
