@@ -1,4 +1,10 @@
 .c-issues-list {
-  background-color: #fff;
-  border: 1px solid #d1d5da;
+  &_inner {
+    background-color: #fff;
+    border: 1px solid #d1d5da;
+  }
+
+  &_pag-box {
+    margin: 20px 0 0;
+  }
 }

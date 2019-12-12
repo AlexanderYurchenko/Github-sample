@@ -1,39 +1,59 @@
 import React, { Component } from "react";
 import Issue from "../issue/issue";
+import Pagination from "../pagination/pagination";
 import "./issues-list.scss"
 
 class IssuesList extends Component {
   state = { 
     issues: [],
+    totalIssues: null,
+    currentPage: null,
+    issuesPerPage: null,
     refresh: false
   }
 
-  // componentWillReceiveProps(props) {
-  //   const { refresh } = this.props;
-  //   if (props.refresh !== refresh) {
-  //     this.setState({ posts: props.posts })
-  //   }
-  // }
+  componentDidMount() {
+    this.setState({ 
+      issues: this.props.issues ,
+      totalIssues: this.props.totalIssues,
+      currentPage: this.props.currentPage,
+      issuesPerPage: this.state.issuesPerPage
+    })
+  }
 
   static getDerivedStateFromProps(nextProps, prevState){
     if(nextProps.refresh !== prevState.refresh){
-      return { issues: nextProps.issues };
+      return { 
+        issues: nextProps.issues,
+        totalIssues: nextProps.totalIssues,
+        currentPage: nextProps.currentPage,
+        issuesPerPage: nextProps.issuesPerPage
+      };
     } else {
       return null;
     }
   }
 
-  componentDidMount() {
-    this.setState({ issues: this.props.issues })
-  }
-
   render() { 
-    // console.log(this.props.issues.length)
+    const { issues, totalIssues, currentPage, issuesPerPage } = this.state;
+
     return (
       <div className="c-issues-list">
-        {this.state.issues.map(issue => (
-          <Issue key={issue.id} issue={issue}/>
-        ))}
+        <div className="c-issues-list_inner">
+          {issues.map(issue => (
+            <Issue key={issue.id} issue={issue}/>
+          ))}
+        </div>
+        <div className="c-issues-list_pag-box">
+          { totalIssues > issuesPerPage &&
+            <Pagination
+              totalIssues={totalIssues}
+              currentPage={currentPage}
+              issuesPerPage={issuesPerPage}
+              onPaginationClick={this.props.onPaginationClick}
+            />
+          }
+        </div>
       </div>
     );
   }

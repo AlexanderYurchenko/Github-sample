@@ -12,13 +12,13 @@ class App extends Component {
       issues: [],
       refreshIssuesList: false,
       totalIssues: null,
-      issuesPerPage: null,
-      currentPage: null
+      issuesPerPage: 30,
+      currentPage: null,
     }
   }
 
   // makeHttpRequestWithPage = async pageNumber => {
-  //   let response = await fetch(`https://api.github.com/repos/facebook/create-react-app/issues?state=all&page=${pageNumber}`, {
+  //   let response = await fetch(`https://api.github.com/repos/facebook/create-react-app/issues?state=all&per_page=${this.state.issuesPerPage}&page=${pageNumber}`, {
   //     method: 'GET',
   //     headers: {
   //       'Accept': 'application/json',
@@ -27,32 +27,49 @@ class App extends Component {
   //   });
 
   //   const data = await response.json();
+  //   console.log(data);
 
   //   this.setState({
-  //     issues: data.data,
-  //     totalIssues: data.total,
-  //     issuesPerPage: data.per_page,
-  //     currentPage: data.page,
+  //     issues: data,
+  //     totalIssues: data[0].number
   //   });
   // }
 
-  componentDidMount() {
-    // this.makeHttpRequestWithPage(1);
-    let url = "https://api.github.com/repos/facebook/create-react-app/issues?state=all&page=2"
+  makeHttpRequestWithPage = pageNumber => {
+    let url = `https://api.github.com/repos/facebook/create-react-app/issues?state=all&per_page=${this.state.issuesPerPage}&page=${pageNumber}`
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        this.setState({issues: data});
+        this.setState({
+          issues: data,
+          totalIssues: data[0].number
+        });
       })
       .catch(error => console.error(error))
       .then(this.refreshIssuesList)
   }
 
+  componentDidMount() {
+    this.makeHttpRequestWithPage(1);
+    // let url = "https://api.github.com/repos/facebook/create-react-app/issues?state=all&page=1"
+    // fetch(url)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     this.setState({issues: data});
+    //   })
+    //   .catch(error => console.error(error))
+    //   .then(this.refreshIssuesList)
+  }
+
   refreshIssuesList = () => this.setState({refreshIssuesList: !this.state.refreshIssuesList})
 
+  handlePaginationClick = (event) => {
+    console.log(event);
+    this.makeHttpRequestWithPage(1);
+  }
+
   render() { 
-    const { issues, refreshIssuesList } = this.state;
-    console.log(this.state.issues);
+    const { issues, refreshIssuesList, totalIssues, currentPage, issuesPerPage } = this.state;
 
     return (
       <React.Fragment>
@@ -63,7 +80,14 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" children={(props) => (
                   props.match
-                    ? <IssuesList {...props} issues={issues} refresh={refreshIssuesList}/> : ''
+                    ? <IssuesList 
+                        {...props} 
+                        issues={issues} 
+                        refresh={refreshIssuesList}
+                        totalIssues={totalIssues}
+                        currentPage={currentPage}
+                        issuesPerPage={issuesPerPage}
+                        onPaginationClick={this.handlePaginationClick}/> : ''
                 )}/>
                 <Route path="/issue/:issueId" children={(props) => (
                   props.match
