@@ -17,7 +17,8 @@ class IssuesList extends Component {
       issues: this.props.issues ,
       totalIssues: this.props.totalIssues,
       currentPage: this.props.currentPage,
-      issuesPerPage: this.state.issuesPerPage
+      issuesPerPage: this.props.issuesPerPage,
+      refresh: this.props.refresh
     })
   }
 
@@ -27,7 +28,8 @@ class IssuesList extends Component {
         issues: nextProps.issues,
         totalIssues: nextProps.totalIssues,
         currentPage: nextProps.currentPage,
-        issuesPerPage: nextProps.issuesPerPage
+        issuesPerPage: nextProps.issuesPerPage,
+        refresh: nextProps.refresh
       };
     } else {
       return null;
@@ -35,7 +37,7 @@ class IssuesList extends Component {
   }
 
   render() { 
-    const { issues, totalIssues, currentPage, issuesPerPage } = this.state;
+    const { issues, totalIssues, currentPage, issuesPerPage, refresh } = this.state;
 
     return (
       <div className="c-issues-list">
@@ -51,6 +53,7 @@ class IssuesList extends Component {
               currentPage={currentPage}
               issuesPerPage={issuesPerPage}
               onPaginationClick={this.props.onPaginationClick}
+              refresh={refresh}
             />
           }
         </div>

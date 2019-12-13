@@ -4,45 +4,75 @@ import "./pagination.scss"
 class Pagination extends Component {
   state = { 
     totalIssues: null,
-    currentPage: null,
-    issuesPerPage: null
+    currentPage: 1,
+    issuesPerPage: null,
+    pageNumbers: 0,
+    refresh: false
   }
 
   componentDidMount() {
+    const pageNumbers = Math.ceil(this.props.totalIssues / this.props.issuesPerPage);
     this.setState({ 
       totalIssues: this.props.totalIssues,
       currentPage: this.props.currentPage,
-      issuesPerPage: this.state.issuesPerPage
+      issuesPerPage: this.props.issuesPerPage,
+      refresh: this.props.refresh,
+      pageNumbers
     })
   }
 
-  renderPageNumbers = pageNumbers.map(number => {
-    let classes = this.state.current_page === number ? styles.active : '';
-  
-    if (number == 1 || number == this.state.total || (number >= this.state.current_page - 2 && number <= this.state.current_page + 2)) {
-      return (
-        <span key={number} className={classes} onClick={() => this.makeHttpRequestWithPage(number)}>{number}</span>
-      );
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(nextProps.refresh !== prevState.refresh){
+      const pageNumbers = Math.ceil(nextProps.totalIssues / nextProps.issuesPerPage);
+      return { 
+        issues: nextProps.issues,
+        totalIssues: nextProps.totalIssues,
+        currentPage: nextProps.currentPage,
+        issuesPerPage: nextProps.issuesPerPage,
+        refresh: nextProps.refresh,
+        pageNumbers
+      };
+    } else {
+      return null;
     }
-  });
-
+  }
 
   render() { 
+    const pagesArray = [],
+    { currentPage, pageNumbers } = this.state;
+
+    for (let i = 1; i <= pageNumbers; i++) {
+      pagesArray.push(i);
+    }
+
+    const renderPageNumbers = pagesArray.map(number => {
+      if (number === currentPage - 3 && number > 1) {
+        return (
+          <span key={number.toString()} className="c-pagination_link c-pagination_gap">…</span> 
+        );
+      } else if (number === currentPage) {
+        return (
+          <em key={number.toString()} className="c-pagination_link c-pagination_current">{number}</em> 
+        );
+      } else if (number === 1 || number === pageNumbers || (number >= currentPage - 2 && number <= currentPage + 2)) {
+        return (
+          <span key={number.toString()} className="c-pagination_link" onClick={() => this.props.onPaginationClick(number)}>{number}</span>
+        );
+      } else if (number === currentPage + 3 && number < pageNumbers) {
+        return (
+          <span key={number.toString()} className="c-pagination_link c-pagination_gap">…</span> 
+        );
+      }
+    });
+
     return ( 
       <div className="c-pagination">
         <div className="c-pagination_inner">
-          <span className="c-pagination_link c-pagination_prev disabled">Previous</span> 
-          <em className="c-pagination_link c-pagination_current">1</em> 
-          <a className="c-pagination_link" rel="next" 
-            onClick={() => this.props.onPaginationClick(2)}
-            href="#">2</a> 
-          <a className="c-pagination_link" href="/facebook/create-react-app/issues?page=3&amp;q=is%3Aissue&amp;utf8=%E2%9C%93">3</a> 
-          <a className="c-pagination_link" href="/facebook/create-react-app/issues?page=4&amp;q=is%3Aissue&amp;utf8=%E2%9C%93">4</a> 
-          <a className="c-pagination_link" href="#" onClick={(event) => this.props.onPaginationClick(event)}>5</a> 
-          <span className="c-pagination_link c-pagination_gap">…</span> 
-          <a className="c-pagination_link" href="/facebook/create-react-app/issues?page=208&amp;q=is%3Aissue&amp;utf8=%E2%9C%93">208</a> 
-          <a className="c-pagination_link" href="/facebook/create-react-app/issues?page=209&amp;q=is%3Aissue&amp;utf8=%E2%9C%93">209</a> 
-          <a className="c-pagination_link c-pagination_next" rel="next" href="/facebook/create-react-app/issues?page=2&amp;q=is%3Aissue&amp;utf8=%E2%9C%93">Next</a>
+          <span className={"c-pagination_link c-pagination_prev " + (currentPage === 1 ? 'disabled' : '')}
+            onClick={() => this.props.onPaginationClick(currentPage - 1)}>Previous</span> 
+          {renderPageNumbers}
+          <span className={"c-pagination_link c-pagination_next " + (currentPage === pageNumbers ? 'disabled' : '')}
+            onClick={() => this.props.onPaginationClick(currentPage + 1)}>Next</span>
         </div>
       </div>
     );

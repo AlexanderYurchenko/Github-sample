@@ -13,59 +13,39 @@ class App extends Component {
       refreshIssuesList: false,
       totalIssues: null,
       issuesPerPage: 30,
-      currentPage: null,
+      currentPage: 1,
     }
   }
 
-  // makeHttpRequestWithPage = async pageNumber => {
-  //   let response = await fetch(`https://api.github.com/repos/facebook/create-react-app/issues?state=all&per_page=${this.state.issuesPerPage}&page=${pageNumber}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-
-  //   const data = await response.json();
-  //   console.log(data);
-
-  //   this.setState({
-  //     issues: data,
-  //     totalIssues: data[0].number
-  //   });
-  // }
-
-  makeHttpRequestWithPage = pageNumber => {
+  makeHttpRequestWithPage = (pageNumber, init) => {
     let url = `https://api.github.com/repos/facebook/create-react-app/issues?state=all&per_page=${this.state.issuesPerPage}&page=${pageNumber}`
     fetch(url)
       .then(response => response.json())
       .then(data => {
         this.setState({
           issues: data,
-          totalIssues: data[0].number
+          currentPage: pageNumber
         });
+
+        if (init) {
+          this.setState({
+            totalIssues: data[0].number
+          });
+        }
       })
       .catch(error => console.error(error))
       .then(this.refreshIssuesList)
   }
 
   componentDidMount() {
-    this.makeHttpRequestWithPage(1);
-    // let url = "https://api.github.com/repos/facebook/create-react-app/issues?state=all&page=1"
-    // fetch(url)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     this.setState({issues: data});
-    //   })
-    //   .catch(error => console.error(error))
-    //   .then(this.refreshIssuesList)
+    this.makeHttpRequestWithPage(1, 'init');
   }
 
-  refreshIssuesList = () => this.setState({refreshIssuesList: !this.state.refreshIssuesList})
+  refreshIssuesList = () => {
+    this.setState({refreshIssuesList: !this.state.refreshIssuesList})}
 
-  handlePaginationClick = (event) => {
-    console.log(event);
-    this.makeHttpRequestWithPage(1);
+  handlePaginationClick = (number) => {
+    this.makeHttpRequestWithPage(number);
   }
 
   render() { 
