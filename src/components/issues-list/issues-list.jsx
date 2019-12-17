@@ -8,8 +8,7 @@ class IssuesList extends Component {
     issues: [],
     totalIssues: null,
     currentPage: null,
-    issuesPerPage: null,
-    refresh: false
+    issuesPerPage: null
   }
 
   componentDidMount() {
@@ -18,18 +17,16 @@ class IssuesList extends Component {
       totalIssues: this.props.totalIssues,
       currentPage: this.props.currentPage,
       issuesPerPage: this.props.issuesPerPage,
-      refresh: this.props.refresh
     })
   }
 
   static getDerivedStateFromProps(nextProps, prevState){
-    if(nextProps.refresh !== prevState.refresh){
+    if(nextProps !== prevState){
       return { 
         issues: nextProps.issues,
         totalIssues: nextProps.totalIssues,
         currentPage: nextProps.currentPage,
-        issuesPerPage: nextProps.issuesPerPage,
-        refresh: nextProps.refresh
+        issuesPerPage: nextProps.issuesPerPage
       };
     } else {
       return null;
@@ -37,7 +34,7 @@ class IssuesList extends Component {
   }
 
   render() { 
-    const { issues, totalIssues, currentPage, issuesPerPage, refresh } = this.state;
+    const { issues, totalIssues, currentPage, issuesPerPage } = this.state;
 
     return (
       <div className="c-issues-list">
@@ -53,7 +50,6 @@ class IssuesList extends Component {
               currentPage={currentPage}
               issuesPerPage={issuesPerPage}
               onPaginationClick={this.props.onPaginationClick}
-              refresh={refresh}
             />
           }
         </div>

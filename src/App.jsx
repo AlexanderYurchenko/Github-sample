@@ -10,7 +10,6 @@ class App extends Component {
     super(props);
     this.state = { 
       issues: [],
-      refreshIssuesList: false,
       totalIssues: null,
       issuesPerPage: 30,
       currentPage: 1,
@@ -34,22 +33,18 @@ class App extends Component {
         }
       })
       .catch(error => console.error(error))
-      .then(this.refreshIssuesList)
   }
 
   componentDidMount() {
     this.makeHttpRequestWithPage(1, 'init');
   }
 
-  refreshIssuesList = () => {
-    this.setState({refreshIssuesList: !this.state.refreshIssuesList})}
-
   handlePaginationClick = (number) => {
     this.makeHttpRequestWithPage(number);
   }
 
   render() { 
-    const { issues, refreshIssuesList, totalIssues, currentPage, issuesPerPage } = this.state;
+    const { issues, totalIssues, currentPage, issuesPerPage } = this.state;
 
     return (
       <React.Fragment>
@@ -63,7 +58,6 @@ class App extends Component {
                     ? <IssuesList 
                         {...props} 
                         issues={issues} 
-                        refresh={refreshIssuesList}
                         totalIssues={totalIssues}
                         currentPage={currentPage}
                         issuesPerPage={issuesPerPage}

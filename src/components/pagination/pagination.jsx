@@ -7,7 +7,6 @@ class Pagination extends Component {
     currentPage: 1,
     issuesPerPage: null,
     pageNumbers: 0,
-    refresh: false
   }
 
   componentDidMount() {
@@ -16,20 +15,18 @@ class Pagination extends Component {
       totalIssues: this.props.totalIssues,
       currentPage: this.props.currentPage,
       issuesPerPage: this.props.issuesPerPage,
-      refresh: this.props.refresh,
       pageNumbers
     })
   }
 
   static getDerivedStateFromProps(nextProps, prevState){
-    if(nextProps.refresh !== prevState.refresh){
+    if(nextProps !== prevState){
       const pageNumbers = Math.ceil(nextProps.totalIssues / nextProps.issuesPerPage);
       return { 
         issues: nextProps.issues,
         totalIssues: nextProps.totalIssues,
         currentPage: nextProps.currentPage,
         issuesPerPage: nextProps.issuesPerPage,
-        refresh: nextProps.refresh,
         pageNumbers
       };
     } else {
