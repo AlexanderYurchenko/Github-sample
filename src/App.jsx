@@ -49,7 +49,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <div className="w-inner">
-          <div className="c-header"></div>
+          <div className="c-header">Header</div>
           <div className="w-center">
             <main className="container">
               <Switch>
@@ -61,6 +61,7 @@ class App extends Component {
                         totalIssues={totalIssues}
                         currentPage={currentPage}
                         issuesPerPage={issuesPerPage}
+                        onIssueClick={this.handleIssueClick}
                         onPaginationClick={this.handlePaginationClick}/> : ''
                 )}/>
                 <Route path="/issue/:issueId" children={(props) => (

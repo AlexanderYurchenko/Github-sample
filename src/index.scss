@@ -34,30 +34,36 @@ body {
   position: relative;
 }
 
+.c-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  background: #24292e;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #fff;
+}
+
 .w-footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 20px 0 0;
-  padding: 15px;
+  margin: 40px 0 0;
+  padding: 40px 0;
   height: 100px;
   background: #f4f6fc;
   font-size: 22px;
   text-transform: uppercase;
   text-align: center;
+  border-top: 1px solid #eaecef;
 }
 
 .w-center {
-  width: $page-width;
+  max-width: $page-width;
   margin-right: auto;
   margin-left: auto;
   padding: 0 15px;
-}
-
-.w-footer {
-  margin-top: 40px;
-  padding: 40px 0;
-  border-top: 1px solid #eaecef;
 }
 
 .c-icon {

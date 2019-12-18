@@ -1,0 +1,92 @@
+.c-issue-single {
+  &_title {
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.125;
+  }
+
+  &_title-num {
+    font-weight: 300;
+    color: #6a737d;
+  }
+
+  &_sub-box {
+    margin: 5px 0 0;
+  }
+
+  &_state {
+    display: inline-block;
+    padding: 4px 8px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #6a737d;
+    border-radius: 3px;
+    margin-right: 8px;
+
+    &--open {
+      background-color: #2cbe4e;
+    }
+  }
+
+  &_sub-table {
+
+  }
+
+  &_author {
+
+  }
+
+  &_opened-text {
+
+  }
+
+  &_time-rel {
+
+  }
+
+  &_sub-coments {
+
+  }
+
+  &_content {
+
+  }
+
+  &_main {
+
+  }
+
+  &_comments-box {
+
+  }
+
+  &_comment {
+
+  }
+
+  &_sub-comments-box {
+
+  }
+
+  &_sub-comment {
+
+  }
+
+  &_form-box {
+
+  }
+
+
+  &_side {
+
+  }
+
+  @media screen and (max-width: 768px) {
+    &_title {
+      font-size: 32px;
+    }
+  }
+}
