@@ -15,19 +15,19 @@
     clear: both;
   }
 
-  &__icon-col {
+  &_icon-col {
     float: left;
     padding: 12px 0 0 16px;
     width: 30px;
   }
 
-  &__main-col {
+  &_main-col {
     float: left;
     padding: 8px;
     width: 66.66667%;
   }
 
-  &__title {
+  &_title {
     color: #24292e;
     text-decoration: none;
     font-size: 16px;
@@ -43,41 +43,18 @@
     }
   }
 
-  &__labels {
+  &_labels {
     display: inline-block;
     vertical-align: top;
     margin: 0 -2px;
   }
 
-  &__label {
-    display: inline-block;
-    vertical-align: top;
-    height: 20px;
-    margin: 0 2px;
-    padding: .15em 4px;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 15px;
-    border-radius: 2px;
-    box-shadow: inset 0 -1px 0 rgba(27,31,35,.12);
-    color: #fff;
-    text-decoration: none;
-
-    &:hover,
-    &:active,
-    &:focus {
-      text-decoration: none;
-      outline: none;
-      color: #fff;
-    }
-  }
-
-  &__info {
+  &_info {
     font-size: 12px;
     color: #586069;
   }
 
-  &__author {
+  &_author {
     display: inline;
     vertical-align: baseline;
     text-decoration: none;
@@ -92,14 +69,14 @@
     }
   }
 
-  &__aux-col {
+  &_aux-col {
     float: right;
     width: 25%;
     text-align: right;
     padding: 12px 16px 0 0;
   }
 
-  &__comment-link {
+  &_comment-link {
     display: inline-block;
     vertical-align: top;
     font-size: 12px;
