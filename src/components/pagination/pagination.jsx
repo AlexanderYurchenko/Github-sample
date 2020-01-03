@@ -59,7 +59,8 @@ class Pagination extends Component {
         return (
           <span key={number.toString()} className="c-pagination_link c-pagination_gap">…</span> 
         );
-      }
+      } 
+      return false;
     });
 
     return ( 

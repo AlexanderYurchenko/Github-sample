@@ -286,6 +286,14 @@
       height: 14px;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23444d56' viewBox='0 0 59.998 59.998'%3E%3Cpath d='M59.206.293a1 1 0 0 0-1.414 0L54.085 4H30.802L1.532 33.51C.866 34.177.5 35.064.5 36.006s.367 1.83 1.033 2.495l20.466 20.466a3.51 3.51 0 0 0 2.491 1.031 3.54 3.54 0 0 0 2.509-1.041l28.5-29.27V5.414l3.707-3.707a1 1 0 0 0 0-1.414zM53.5 28.874l-27.925 28.68a1.53 1.53 0 0 1-2.162 0L2.946 37.087a1.53 1.53 0 0 1 .003-2.165L31.636 6h20.45l-4.833 4.833A4.97 4.97 0 0 0 44.499 10c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5a4.97 4.97 0 0 0-.833-2.753L53.5 7.414v21.46zM47.5 15c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3c.462 0 .894.114 1.285.3l-1.992 1.992a1 1 0 0 0 0 1.414c.195.195.45.293.707.293s.512-.098.707-.293l1.992-1.992A2.95 2.95 0 0 1 47.499 15z'/%3E%3C/svg%3E");
     }
+
+    &--close {
+      background-color: #d73a49;
+
+      &:before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 65.518 65.518' fill='%23fff'%3E%3Cpath d='M32.76 0C14.696 0 0 14.695 0 32.76s14.695 32.76 32.76 32.76 32.76-14.695 32.76-32.76S50.822 0 32.76 0zM6 32.76C6 18.004 18.004 6 32.76 6c6.648 0 12.734 2.443 17.42 6.472L12.472 50.178C8.443 45.493 6 39.407 6 32.76zm26.76 26.76c-5.948 0-11.447-1.953-15.895-5.248L54.27 16.865c3.295 4.448 5.248 9.947 5.248 15.895.001 14.754-12.003 26.758-26.758 26.758z'/%3E%3C/svg%3E");
+      }
+    }
   }
 
   &_sub-body {
@@ -341,6 +349,39 @@
 
   &_side {
     margin: 20px 0 0;
+    padding-left: 24px;
+  }
+
+  &_side-item {
+    padding-top: 16px;
+    font-size: 12px;
+    color: #586069;
+
+    & + .c-issue-single_side-item {
+      margin-top: 16px;
+      border-top: 1px solid #e1e4e8;
+    }
+  }
+
+  &_side-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  &_side-content {
+    .c-label {
+      display: block;
+
+      & + .c-label {
+        margin-top: 3px;
+      }
+    }
+  }
+
+  &_side-user {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 5px 5px 0;
   }
 
   @media screen and (min-width: 768px) {
@@ -359,6 +400,7 @@
 
     &_side {
       width: 25%;
+      margin-top: 0;
     }
   }
 }
