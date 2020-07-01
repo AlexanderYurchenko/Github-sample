@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Github clone that fetches data from github API
+
 ## To run project
 
 **Install create-react-app:**

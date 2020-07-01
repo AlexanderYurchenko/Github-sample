@@ -8,7 +8,7 @@ import IssueSingle from "./components/issue-single/issue-single";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       issues: [],
       totalIssues: null,
       issuesPerPage: 30,
@@ -43,7 +43,7 @@ class App extends Component {
     this.makeHttpRequestWithPage(number);
   }
 
-  render() { 
+  render() {
     const { issues, totalIssues, currentPage, issuesPerPage } = this.state;
 
     return (
@@ -55,9 +55,9 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" children={(props) => (
                   props.match
-                    ? <IssuesList 
-                        {...props} 
-                        issues={issues} 
+                    ? <IssuesList
+                        {...props}
+                        issues={issues}
                         totalIssues={totalIssues}
                         currentPage={currentPage}
                         issuesPerPage={issuesPerPage}
@@ -78,5 +78,5 @@ class App extends Component {
     );
   }
 }
- 
+
 export default App;

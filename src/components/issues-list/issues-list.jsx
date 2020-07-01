@@ -4,7 +4,7 @@ import Pagination from "../pagination/pagination";
 import "./issues-list.scss"
 
 class IssuesList extends Component {
-  state = { 
+  state = {
     issues: [],
     totalIssues: null,
     currentPage: null,
@@ -12,7 +12,7 @@ class IssuesList extends Component {
   }
 
   componentDidMount() {
-    this.setState({ 
+    this.setState({
       issues: this.props.issues ,
       totalIssues: this.props.totalIssues,
       currentPage: this.props.currentPage,
@@ -22,7 +22,7 @@ class IssuesList extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState){
     if(nextProps !== prevState){
-      return { 
+      return {
         issues: nextProps.issues,
         totalIssues: nextProps.totalIssues,
         currentPage: nextProps.currentPage,
@@ -33,7 +33,7 @@ class IssuesList extends Component {
     }
   }
 
-  render() { 
+  render() {
     const { issues, totalIssues, currentPage, issuesPerPage } = this.state;
 
     return (
@@ -57,5 +57,5 @@ class IssuesList extends Component {
     );
   }
 }
- 
+
 export default IssuesList;
